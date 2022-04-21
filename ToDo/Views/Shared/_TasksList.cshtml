@@ -16,46 +16,25 @@
 
         @foreach (var item in Model)
         {
-            if (item.STATUS == "D")
-            {
-                <tr style="background-color:green">
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CREATIONDATE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
+            <tr style="background-color:@(item.STATUS=="D"?"green":"white")">
 
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.STATUS)
-                        </td>*@
-                    <td>
-                        @Ajax.ActionLink("Done", "Complete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-primary" })
-                        @Ajax.ActionLink("Delete", "Delete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-danger" })
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CREATIONDATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIPTION)
 
-                </tr>
-            }
-            else
-            {
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </td>*@
+                <td>
+                    @Ajax.ActionLink("Done", "Complete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-primary" })
+                    @Ajax.ActionLink("Delete", "Delete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-danger" })
+                </td>
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CREATIONDATE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.STATUS)
-                        </td>*@
-                    <td>
-                        @Ajax.ActionLink("Done", "Complete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-primary" })
-                        @Ajax.ActionLink("Delete", "Delete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-danger" })
-                    </td>
-                </tr>
-            }
+            </tr>
         }
     </tbody>
 
