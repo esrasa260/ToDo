@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ToDo.Models.EntityFramework.Tasks>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ToDo</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h3>TODO</h3>
+        @using (Ajax.BeginForm("Create", "Tasks", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }))
+        {
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" name="description" class="form-control" />
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </div>
+        }
+        <div id="TasksList" class="row">
+            @Html.Partial("_TasksList")
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

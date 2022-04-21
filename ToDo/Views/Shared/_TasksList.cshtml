@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ToDo.Models.EntityFramework.Tasks>
+<table class="table col-6" style="width:60%">
+    <thead>
+        <tr>
+            <th>
+                Creation Date
+            </th>
+            <th>
+                Name
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            if (item.STATUS == "D")
+            {
+                <tr style="background-color:green">
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CREATIONDATE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
+
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.STATUS)
+                        </td>*@
+                    <td>
+                        @Ajax.ActionLink("Done", "Complete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-primary" })
+                        @Ajax.ActionLink("Delete", "Delete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-danger" })
+                    </td>
+
+                </tr>
+            }
+            else
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CREATIONDATE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.STATUS)
+                        </td>*@
+                    <td>
+                        @Ajax.ActionLink("Done", "Complete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-primary" })
+                        @Ajax.ActionLink("Delete", "Delete", "Tasks", new { id = item.ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "TasksList" }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
